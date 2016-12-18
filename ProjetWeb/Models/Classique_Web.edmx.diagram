@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="aaa0d17a50c74aab84bb4b9a164feb51" Name="Diagram1">
+        <EntityTypeShape EntityType="Classique_WebModel.Abonné" Width="1.5" PointX="6" PointY="9.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="Classique_WebModel.Achat" Width="1.5" PointX="8.25" PointY="10.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="Classique_WebModel.Album" Width="1.5" PointX="8.25" PointY="14" IsExpanded="true" />
+        <EntityTypeShape EntityType="Classique_WebModel.Composer" Width="1.5" PointX="8.25" PointY="5.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="Classique_WebModel.Composition" Width="1.5" PointX="1.5" PointY="14.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="Classique_WebModel.Composition_Disque" Width="1.5" PointX="12.75" PointY="11.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="Classique_WebModel.Composition_Oeuvre" Width="1.5" PointX="3.75" PointY="14.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Classique_WebModel.Direction" Width="1.5" PointX="8.25" PointY="2.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="Classique_WebModel.Disque" Width="1.5" PointX="10.5" PointY="14.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="Classique_WebModel.Editeur" Width="1.5" PointX="6" PointY="14.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="Classique_WebModel.Enregistrement" Width="1.5" PointX="0.75" PointY="9.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="Classique_WebModel.Genre" Width="1.5" PointX="3.75" PointY="8.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="Classique_WebModel.Instrument" Width="1.5" PointX="0.75" PointY="5.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Classique_WebModel.Instrumentation" Width="1.5" PointX="3" PointY="5.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="Classique_WebModel.Interpréter" Width="1.5" PointX="3" PointY="2.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="Classique_WebModel.Musicien" Width="1.5" PointX="6" PointY="4.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="Classique_WebModel.Oeuvre" Width="1.5" PointX="0.75" PointY="1.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="Classique_WebModel.Orchestres" Width="1.5" PointX="6" PointY="2" IsExpanded="true" />
+        <EntityTypeShape EntityType="Classique_WebModel.Pays" Width="1.5" PointX="3.75" PointY="11.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="Classique_WebModel.sysdiagrams" Width="1.5" PointX="10.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Classique_WebModel.Type_Morceaux" Width="1.5" PointX="1.5" PointY="18" IsExpanded="true" />
+        <AssociationConnector Association="Classique_WebModel.FK__Abonné__Code_Pay__236943A5" ManuallyRouted="false" />
+        <AssociationConnector Association="Classique_WebModel.FK_Achat_Abonné" ManuallyRouted="false" />
+        <AssociationConnector Association="Classique_WebModel.FK_Achat_Enregistrement" ManuallyRouted="false" />
+        <AssociationConnector Association="Classique_WebModel.FK_Album_Editeur" ManuallyRouted="false" />
+        <AssociationConnector Association="Classique_WebModel.FK_Album_Genre" ManuallyRouted="false" />
+        <AssociationConnector Association="Classique_WebModel.FK_Disque_Album" ManuallyRouted="false" />
+        <AssociationConnector Association="Classique_WebModel.FK_Composer_Musicien" ManuallyRouted="false" />
+        <AssociationConnector Association="Classique_WebModel.FK_Composer_Oeuvre" ManuallyRouted="false" />
+        <AssociationConnector Association="Classique_WebModel.FK_Composition_Oeuvre_Composition" ManuallyRouted="false" />
+        <AssociationConnector Association="Classique_WebModel.FK_Morceaux_Composition" ManuallyRouted="false" />
+        <AssociationConnector Association="Classique_WebModel.FK_Contenir_Morceaux_Disque" ManuallyRouted="false" />
+        <AssociationConnector Association="Classique_WebModel.FK_Contenir_Morceaux_Morceaux" ManuallyRouted="false" />
+        <AssociationConnector Association="Classique_WebModel.FK_Composition_Oeuvre_Oeuvre" ManuallyRouted="false" />
+        <AssociationConnector Association="Classique_WebModel.FK_Direction_Morceaux" ManuallyRouted="false" />
+        <AssociationConnector Association="Classique_WebModel.FK_Direction_Musicien" ManuallyRouted="false" />
+        <AssociationConnector Association="Classique_WebModel.FK_Direction_Orchestres" ManuallyRouted="false" />
+        <AssociationConnector Association="Classique_WebModel.FK_Editeur_Pays" ManuallyRouted="false" />
+        <AssociationConnector Association="Classique_WebModel.FK_Interpréter_Morceaux" ManuallyRouted="false" />
+        <AssociationConnector Association="Classique_WebModel.FK_Musicien_Musicien1" ManuallyRouted="false" />
+        <AssociationConnector Association="Classique_WebModel.FK_Instrumentation_Instrument" ManuallyRouted="false" />
+        <AssociationConnector Association="Classique_WebModel.FK_Interpréter_Instrument" ManuallyRouted="false" />
+        <AssociationConnector Association="Classique_WebModel.FK_Musicien_Instrument" ManuallyRouted="false" />
+        <AssociationConnector Association="Classique_WebModel.FK_Instrumentation_Oeuvre" ManuallyRouted="false" />
+        <AssociationConnector Association="Classique_WebModel.FK_Interpréter_Musicien" ManuallyRouted="false" />
+        <AssociationConnector Association="Classique_WebModel.FK_Musicien_Musicien" ManuallyRouted="false" />
+        <AssociationConnector Association="Classique_WebModel.FK_Oeuvre_Type_Morceaux" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

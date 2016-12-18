@@ -43,11 +43,21 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.0\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -90,6 +100,16 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Global.asax" />
+    <Content Include="Models\Classique_Web.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>Classique_Web.edmx</DependentUpon>
+      <LastGenOutput>Classique_Web.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Models\Classique_Web.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>Classique_Web.edmx</DependentUpon>
+      <LastGenOutput>Classique_Web.cs</LastGenOutput>
+    </Content>
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
@@ -97,11 +117,96 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\Abonné.cs">
+      <DependentUpon>Classique_Web.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Achat.cs">
+      <DependentUpon>Classique_Web.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Album.cs">
+      <DependentUpon>Classique_Web.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Classique_Web.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Classique_Web.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Classique_Web.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Classique_Web.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Classique_Web.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Classique_Web.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Composer.cs">
+      <DependentUpon>Classique_Web.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Composition.cs">
+      <DependentUpon>Classique_Web.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Composition_Disque.cs">
+      <DependentUpon>Classique_Web.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Composition_Oeuvre.cs">
+      <DependentUpon>Classique_Web.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Direction.cs">
+      <DependentUpon>Classique_Web.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Disque.cs">
+      <DependentUpon>Classique_Web.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Editeur.cs">
+      <DependentUpon>Classique_Web.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Enregistrement.cs">
+      <DependentUpon>Classique_Web.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Genre.cs">
+      <DependentUpon>Classique_Web.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Instrument.cs">
+      <DependentUpon>Classique_Web.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Instrumentation.cs">
+      <DependentUpon>Classique_Web.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Interpréter.cs">
+      <DependentUpon>Classique_Web.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Musicien.cs">
+      <DependentUpon>Classique_Web.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Oeuvre.cs">
+      <DependentUpon>Classique_Web.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Orchestres.cs">
+      <DependentUpon>Classique_Web.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Pays.cs">
+      <DependentUpon>Classique_Web.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\sysdiagrams.cs">
+      <DependentUpon>Classique_Web.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Type_Morceaux.cs">
+      <DependentUpon>Classique_Web.tt</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\web.config" />
     <Content Include="packages.config" />
+    <EntityDeploy Include="Models\Classique_Web.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>Classique_Web.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Models\Classique_Web.edmx.diagram">
+      <DependentUpon>Classique_Web.edmx</DependentUpon>
+    </Content>
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -112,7 +217,9 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Controllers\" />
-    <Folder Include="Models\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
