@@ -1,0 +1,12 @@
+﻿@model ProjetWeb.Models.Album
+
+@{
+    ViewBag.Title = "Details de " + Model.Titre_Album;
+    Layout = "~/Views/Shared/_AlbumLayout.cshtml";
+
+    ViewBag.Titre = Model.Titre_Album;
+    ViewBag.Prix = 13;
+    ViewBag.Id = Model.Code_Album;
+}
+
+<h2>@ViewBag.Titre</h2>
