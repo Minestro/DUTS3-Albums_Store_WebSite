@@ -267,7 +267,6 @@
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Home\APropos.cshtml" />
-    <Content Include="Views\Shared\_AlbumLayout.cshtml" />
     <Content Include="Views\Albums\Details.cshtml" />
     <Content Include="Views\Albums\Index.cshtml" />
     <None Include="Web.Debug.config">
