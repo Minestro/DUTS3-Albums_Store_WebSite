@@ -1,0 +1,40 @@
+﻿@model ProjetWeb.ViewModels.RegisterViewModel
+@{
+    ViewBag.Title = "Inscription";
+}
+<h2>Inscription</h2>
+@using (Html.BeginForm())
+{
+    <div>
+        @Html.LabelFor(m => m.Nom_Abonné)
+        @Html.TextBoxFor(m => m.Nom_Abonné)
+        @Html.ValidationMessageFor(m => m.Nom_Abonné)
+    </div>
+    <div>
+        @Html.LabelFor(m => m.Prénom_Abonné)
+        @Html.TextBoxFor(m => m.Prénom_Abonné)
+        @Html.ValidationMessageFor(m => m.Prénom_Abonné)
+    </div>
+    <div>
+        @Html.LabelFor(m => m.Login)
+        @Html.TextBoxFor(m => m.Login)
+        @Html.ValidationMessageFor(m => m.Login)
+    </div>
+    <div>
+        @Html.LabelFor(m => m.Email)
+        @Html.TextBoxFor(m => m.Email)
+        @Html.ValidationMessageFor(m => m.Email)
+    </div>
+    <div>
+        @Html.LabelFor(m => m.Password)
+        @Html.PasswordFor(m => m.Password)
+        @Html.ValidationMessageFor(m => m.Password)
+    </div>
+    <div>
+        @Html.LabelFor(m => m.PasswordConfirmation)
+        @Html.PasswordFor(m => m.PasswordConfirmation)
+        @Html.ValidationMessageFor(m => m.PasswordConfirmation)
+    </div>
+    <input type="submit" value="S'inscrire" />
+    <br />
+}
