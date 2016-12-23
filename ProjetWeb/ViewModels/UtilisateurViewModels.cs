@@ -18,11 +18,56 @@ namespace ProjetWeb.ViewModels
         }
     }
 
+    public class ChangePasswordAttribute : ValidationAttribute
+    {
+        public ChangePasswordAttribute(int minLength, string oldPasswordPropertyName)
+        {
+            this.OldPasswordPropertyName = oldPasswordPropertyName;
+            this.MinLength = minLength;
+        }
+
+        public string OldPasswordPropertyName { get; private set; }
+        public int MinLength { get; private set; }
+
+        protected override ValidationResult IsValid(object value, ValidationContext validationContext)
+        {
+            var property = validationContext.ObjectType.GetProperty(OldPasswordPropertyName);
+            string oldPassword = property.ToString();
+            string actualPassword = User.getUserByID(int.Parse(HttpContext.Current.User.Identity.Name)).Password;
+            string newPassword;
+            if (value != null)
+            {
+               newPassword = value.ToString();
+            } else
+            {
+                newPassword = "";
+            }
+            if (oldPassword.Length == 0)
+            {
+                return ValidationResult.Success;
+            }
+            if (actualPassword != Encode.EncodeMD5(oldPassword))
+            {
+                return new ValidationResult("L'ancien mot de passe n'est pas le bon", new string[] { OldPasswordPropertyName });
+            }
+            if (newPassword.Length < MinLength)
+            {
+                return new ValidationResult("Le nouveau mot de passe doit faire au minimum " + MinLength.ToString() + " caractères");
+            }
+            return ValidationResult.Success;
+        }
+    }
+
     public static class User
     {
         public static Abonné getUserByID(int id)
         {
             Classique_WebEntities db = new Classique_WebEntities();
+            return db.Abonné.FirstOrDefault(u => u.Code_Abonné == id);
+        }
+
+        public static Abonné getUserByID(Classique_WebEntities db, int id)
+        {
             return db.Abonné.FirstOrDefault(u => u.Code_Abonné == id);
         }
     }
@@ -35,6 +80,7 @@ namespace ProjetWeb.ViewModels
         [Display(Name = "Nom")]
         public string Nom_Abonné { get; set; }
 
+        [Required]
         [Display(Name = "Prénom")]
         public string Prénom_Abonné { get; set; }
 
@@ -93,6 +139,83 @@ namespace ProjetWeb.ViewModels
             {
                 return user;
             }
+        }
+    }
+
+    public class ManageViewModel
+    {
+        private int Id;
+
+        public System.Web.Mvc.SelectList PaysList{ get; set; }
+
+        [Required]
+        [Display(Name = "Nom")]
+        public string Nom_Abonné { get; set; }
+
+        [Required]
+        [Display(Name = "Prénom")]
+        public string Prénom_Abonné { get; set; }
+
+        [Display(Name = "Ancien Mot de Passe")]
+        [DataType(DataType.Password)]
+        public string OldPassword { get; set; }
+
+        [DataType(DataType.Password)]
+        public string NewPassword { get; set; }
+
+        [DataType(DataType.Password)]
+        [Compare("NewPassword", ErrorMessage = "Le mot de passe et le mot de passe de confirmation ne correspondent pas.")]
+        [ChangePassword(6, "OldPassword")]
+        public string NewPasswordRepeat { get; set; }
+
+        public string Adresse { get; set; }
+
+        public string Ville { get; set; }
+
+        [Display(Name = "Code_Postal")]
+        [DataType(DataType.PostalCode)]
+        public string Code_Postal { get; set; }
+
+        [Required]
+        [EmailAddress]
+        public string Email { get; set; }
+
+        public int? Code_Pays { get; set; }
+
+        public void init(Abonné abonné)
+        {
+            Classique_WebEntities db = new Classique_WebEntities();
+            PaysList = new System.Web.Mvc.SelectList(db.Pays, "Code_Pays", "Nom_Pays");
+            if (abonné != null)
+            {
+                this.Id = abonné.Code_Abonné;
+                this.Nom_Abonné = abonné.Nom_Abonné;
+                this.Prénom_Abonné = abonné.Prénom_Abonné;
+                this.Adresse = abonné.Adresse;
+                this.Ville = abonné.Ville;
+                this.Code_Pays = abonné.Code_Pays;
+                this.Email = abonné.Email;
+            }
+        }
+
+        public void saveChanges()
+        {
+            Classique_WebEntities db = new Classique_WebEntities();
+            Abonné abonné = User.getUserByID(db, Id);
+            if (abonné != null)
+            {
+                abonné.Nom_Abonné = this.Nom_Abonné;
+                abonné.Prénom_Abonné = this.Prénom_Abonné;
+                abonné.Adresse = this.Adresse;
+                abonné.Ville = this.Ville;
+                abonné.Code_Pays = this.Code_Pays;
+                abonné.Email = this.Email;
+                if (NewPassword.Length > 0)
+                {
+                    abonné.Password = Encode.EncodeMD5(NewPassword);
+                }
+            }
+            db.SaveChanges();
         }
     }
 }

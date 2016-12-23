@@ -13,9 +13,45 @@ namespace ProjetWeb.Controllers
     {
         private Classique_WebEntities db = new Classique_WebEntities();
         
+        [Authorize]
         public ActionResult Index()
         {
-            return View();
+            Abonné user = ViewModels.User.getUserByID(int.Parse(User.Identity.Name));
+            if (user != null)
+            {
+                return View(user);
+            } else {
+                FormsAuthentication.SignOut();
+                return RedirectToAction("Login", "Account");
+            }
+        }
+
+        [Authorize]
+        public ActionResult Manage()
+        {
+            Abonné user = ViewModels.User.getUserByID(int.Parse(User.Identity.Name));
+            if (user != null)
+            {
+                ManageViewModel manageModel = new ManageViewModel();
+                manageModel.init(user);
+                return View(manageModel);
+            }
+            else
+            {
+                FormsAuthentication.SignOut();
+                return RedirectToAction("Login", "Account");
+            }
+        }
+
+        [Authorize]
+        [HttpPost]
+        public ActionResult Manage(ManageViewModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                model.saveChanges();
+            }
+            return View(model);
         }
 
         public ActionResult Login()

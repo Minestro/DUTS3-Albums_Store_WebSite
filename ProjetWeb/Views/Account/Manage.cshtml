@@ -1,0 +1,26 @@
+﻿@model ProjetWeb.ViewModels.ManageViewModel
+@{
+    ViewBag.Title = "Modifier vos informations";
+}
+<h2>Modifier vos informations</h2>
+@using (Html.BeginForm())
+{
+    <div>
+        @Html.LabelFor(m => m.Nom_Abonné)
+        @Html.TextBoxFor(m => m.Nom_Abonné)
+        @Html.ValidationMessageFor(m => m.Nom_Abonné)
+    </div>
+    <div>
+        @Html.LabelFor(m => m.Prénom_Abonné)
+        @Html.TextBoxFor(m => m.Prénom_Abonné)
+        @Html.ValidationMessageFor(m => m.Prénom_Abonné)
+    </div>
+    <div>
+        @Html.LabelFor(m => m.Email)
+        @Html.TextBoxFor(m => m.Email)
+        @Html.ValidationMessageFor(m => m.Email)
+    </div>
+    
+    
+    <input type="submit" value="Modifier" />
+}
