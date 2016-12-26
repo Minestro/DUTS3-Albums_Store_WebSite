@@ -50,8 +50,20 @@ namespace ProjetWeb.Controllers
             if (ModelState.IsValid)
             {
                 model.saveChanges();
+                ViewBag.MessageValidationResult = "Les modifications ont bien été enregistrés";
+            } else
+            {
+                ViewBag.MessageValidationResult = "";
             }
-            return View(model);
+            Abonné user = ViewModels.User.getUserByID(int.Parse(User.Identity.Name));
+            if (user != null)
+            {
+                model.init(user);
+                return View(model);
+            } else
+            {
+                return RedirectToAction("Login", "Account");
+            }
         }
 
         public ActionResult Login()

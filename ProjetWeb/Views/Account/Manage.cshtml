@@ -3,8 +3,10 @@
     ViewBag.Title = "Modifier vos informations";
 }
 <h2>Modifier vos informations</h2>
+<p style="color : green;">@ViewBag.MessageValidationResult</p>
 @using (Html.BeginForm())
 {
+    @Html.HiddenFor(m => m.Id)
     <div>
         @Html.LabelFor(m => m.Nom_Abonné)
         @Html.TextBoxFor(m => m.Nom_Abonné)
@@ -20,7 +22,41 @@
         @Html.TextBoxFor(m => m.Email)
         @Html.ValidationMessageFor(m => m.Email)
     </div>
-    
-    
+    <div>
+        @Html.LabelFor(m => m.Code_Pays)
+        @Html.DropDownListFor(m => m.Code_Pays, Model.PaysList, "Sélectionnez un pays")
+        @Html.ValidationMessageFor(m => m.Code_Pays)
+    </div>
+    <div>
+        @Html.LabelFor(m => m.Adresse)
+        @Html.TextBoxFor(m => m.Adresse)
+        @Html.ValidationMessageFor(m => m.Adresse)
+    </div>
+    <div>
+        @Html.LabelFor(m => m.Ville)
+        @Html.TextBoxFor(m => m.Ville)
+        @Html.ValidationMessageFor(m => m.Ville)
+    </div>
+    <div>
+        @Html.LabelFor(m => m.Code_Postal)
+        @Html.TextBoxFor(m => m.Code_Postal)
+        @Html.ValidationMessageFor(m => m.Code_Postal)
+    </div>
+    <p>Changer le mot de passe (laisser vide pour garder l'actuel) :</p>
+    <div>
+        @Html.LabelFor(m => m.OldPassword)
+        @Html.PasswordFor(m => m.OldPassword)
+        @Html.ValidationMessageFor(m => m.OldPassword)
+    </div>
+    <div>
+        @Html.LabelFor(m => m.NewPassword)
+        @Html.PasswordFor(m => m.NewPassword)
+        @Html.ValidationMessageFor(m => m.NewPassword)
+    </div>
+    <div>
+        @Html.LabelFor(m => m.NewPasswordRepeat)
+        @Html.PasswordFor(m => m.NewPasswordRepeat)
+        @Html.ValidationMessageFor(m => m.NewPasswordRepeat)
+    </div>
     <input type="submit" value="Modifier" />
 }

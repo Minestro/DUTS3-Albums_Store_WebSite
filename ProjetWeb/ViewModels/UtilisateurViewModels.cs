@@ -32,15 +32,25 @@ namespace ProjetWeb.ViewModels
         protected override ValidationResult IsValid(object value, ValidationContext validationContext)
         {
             var property = validationContext.ObjectType.GetProperty(OldPasswordPropertyName);
-            string oldPassword = property.ToString();
-            string actualPassword = User.getUserByID(int.Parse(HttpContext.Current.User.Identity.Name)).Password;
-            string newPassword;
+            string oldPassword = "";
+            if (property != null)
+            {
+                var val = property.GetValue(validationContext.ObjectInstance);
+                if (val != null)
+                {
+                    oldPassword = val.ToString();
+                }
+            }
+            Abonné user = User.getUserByID(int.Parse(HttpContext.Current.User.Identity.Name));
+            string actualPassword = "";
+            if (user != null)
+            {
+                actualPassword = user.Password;
+            }
+            string newPassword = "";
             if (value != null)
             {
                newPassword = value.ToString();
-            } else
-            {
-                newPassword = "";
             }
             if (oldPassword.Length == 0)
             {
@@ -74,8 +84,6 @@ namespace ProjetWeb.ViewModels
 
     public class RegisterViewModel
     {
-        public int Code_Abonné { get; set; }
-
         [Required]
         [Display(Name = "Nom")]
         public string Nom_Abonné { get; set; }
@@ -144,7 +152,7 @@ namespace ProjetWeb.ViewModels
 
     public class ManageViewModel
     {
-        private int Id;
+        public int Id { get; set; }
 
         public System.Web.Mvc.SelectList PaysList{ get; set; }
 
@@ -161,18 +169,20 @@ namespace ProjetWeb.ViewModels
         public string OldPassword { get; set; }
 
         [DataType(DataType.Password)]
+        [Display(Name = "Nouveau mot de passe")]
         public string NewPassword { get; set; }
 
         [DataType(DataType.Password)]
         [Compare("NewPassword", ErrorMessage = "Le mot de passe et le mot de passe de confirmation ne correspondent pas.")]
         [ChangePassword(6, "OldPassword")]
+        [Display(Name = "Répétez le nouveau mot de passe")]
         public string NewPasswordRepeat { get; set; }
 
         public string Adresse { get; set; }
 
         public string Ville { get; set; }
 
-        [Display(Name = "Code_Postal")]
+        [Display(Name = "Code Postal")]
         [DataType(DataType.PostalCode)]
         public string Code_Postal { get; set; }
 
@@ -180,12 +190,13 @@ namespace ProjetWeb.ViewModels
         [EmailAddress]
         public string Email { get; set; }
 
+        [Display(Name = "Pays")]
         public int? Code_Pays { get; set; }
 
         public void init(Abonné abonné)
         {
             Classique_WebEntities db = new Classique_WebEntities();
-            PaysList = new System.Web.Mvc.SelectList(db.Pays, "Code_Pays", "Nom_Pays");
+            PaysList = new System.Web.Mvc.SelectList(db.Pays, "Code_Pays", "Nom_Pays", Code_Pays);
             if (abonné != null)
             {
                 this.Id = abonné.Code_Abonné;
@@ -193,6 +204,7 @@ namespace ProjetWeb.ViewModels
                 this.Prénom_Abonné = abonné.Prénom_Abonné;
                 this.Adresse = abonné.Adresse;
                 this.Ville = abonné.Ville;
+                this.Code_Postal = abonné.Code_Postal;
                 this.Code_Pays = abonné.Code_Pays;
                 this.Email = abonné.Email;
             }
@@ -206,11 +218,12 @@ namespace ProjetWeb.ViewModels
             {
                 abonné.Nom_Abonné = this.Nom_Abonné;
                 abonné.Prénom_Abonné = this.Prénom_Abonné;
+                abonné.Code_Postal = this.Code_Postal;
                 abonné.Adresse = this.Adresse;
                 abonné.Ville = this.Ville;
                 abonné.Code_Pays = this.Code_Pays;
                 abonné.Email = this.Email;
-                if (NewPassword.Length > 0)
+                if (NewPassword != null && NewPassword.Length > 0)
                 {
                     abonné.Password = Encode.EncodeMD5(NewPassword);
                 }
