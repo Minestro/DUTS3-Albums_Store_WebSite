@@ -76,7 +76,7 @@ namespace ProjetWeb.ViewModels
             return db.Abonné.FirstOrDefault(u => u.Code_Abonné == id);
         }
 
-        public static Abonné getUserByID(Classique_WebEntities db, int id)
+        public static Abonné getUserByID(int id, Classique_WebEntities db)
         {
             return db.Abonné.FirstOrDefault(u => u.Code_Abonné == id);
         }
@@ -112,10 +112,9 @@ namespace ProjetWeb.ViewModels
         [Display(Name = "Email")]
         public string Email { get; set; }
 
-        public Abonné register()
+        public Abonné register(Classique_WebEntities db)
         {
             string passwordEncoded = Encode.EncodeMD5(Password);
-            Classique_WebEntities db = new Classique_WebEntities();
             Abonné abonné = new Abonné { Nom_Abonné = this.Nom_Abonné, Prénom_Abonné = this.Prénom_Abonné, Login = this.Login, Password = passwordEncoded, Email = this.Email, Credit = 0 };
             db.Abonné.Add(abonné);
             db.SaveChanges();
@@ -134,10 +133,9 @@ namespace ProjetWeb.ViewModels
         [Display(Name = "Mot de passe")]
         public string Password { get; set; }
 
-        public Abonné login()
+        public Abonné login(Classique_WebEntities db)
         {
             string passwordEncoded = Encode.EncodeMD5(Password);
-            Classique_WebEntities db = new Classique_WebEntities();
             Abonné user = db.Abonné.FirstOrDefault(u => u.Login == LoginOuEmail && u.Password == passwordEncoded);
             if (user == null)
             {
@@ -193,9 +191,8 @@ namespace ProjetWeb.ViewModels
         [Display(Name = "Pays")]
         public int? Code_Pays { get; set; }
 
-        public void init(Abonné abonné)
+        public void init(Abonné abonné, Classique_WebEntities db)
         {
-            Classique_WebEntities db = new Classique_WebEntities();
             PaysList = new System.Web.Mvc.SelectList(db.Pays, "Code_Pays", "Nom_Pays", Code_Pays);
             if (abonné != null)
             {
@@ -210,10 +207,9 @@ namespace ProjetWeb.ViewModels
             }
         }
 
-        public void saveChanges()
+        public void saveChanges(Classique_WebEntities db)
         {
-            Classique_WebEntities db = new Classique_WebEntities();
-            Abonné abonné = User.getUserByID(db, Id);
+            Abonné abonné = User.getUserByID(Id, db);
             if (abonné != null)
             {
                 abonné.Nom_Abonné = this.Nom_Abonné;

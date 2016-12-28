@@ -16,7 +16,7 @@ namespace ProjetWeb.Controllers
         [Authorize]
         public ActionResult Index()
         {
-            Abonné user = ViewModels.User.getUserByID(int.Parse(User.Identity.Name));
+            Abonné user = ViewModels.User.getUserByID(int.Parse(User.Identity.Name), db);
             if (user != null)
             {
                 return View(user);
@@ -29,11 +29,11 @@ namespace ProjetWeb.Controllers
         [Authorize]
         public ActionResult Manage()
         {
-            Abonné user = ViewModels.User.getUserByID(int.Parse(User.Identity.Name));
+            Abonné user = ViewModels.User.getUserByID(int.Parse(User.Identity.Name), db);
             if (user != null)
             {
                 ManageViewModel manageModel = new ManageViewModel();
-                manageModel.init(user);
+                manageModel.init(user, db);
                 return View(manageModel);
             }
             else
@@ -49,16 +49,16 @@ namespace ProjetWeb.Controllers
         {
             if (ModelState.IsValid)
             {
-                model.saveChanges();
+                model.saveChanges(db);
                 ViewBag.MessageValidationResult = "Les modifications ont bien été enregistrés";
             } else
             {
                 ViewBag.MessageValidationResult = "";
             }
-            Abonné user = ViewModels.User.getUserByID(int.Parse(User.Identity.Name));
+            Abonné user = ViewModels.User.getUserByID(int.Parse(User.Identity.Name), db);
             if (user != null)
             {
-                model.init(user);
+                model.init(user, db);
                 return View(model);
             } else
             {
@@ -81,7 +81,7 @@ namespace ProjetWeb.Controllers
         {
             if (ModelState.IsValid)
             {
-                Abonné userLoged = user.login(); 
+                Abonné userLoged = user.login(db); 
                 if (userLoged == null)
                 {
                     ModelState.AddModelError("LoginOuEmail", "Login et/ou mot de passe incorrect(s)");
@@ -108,7 +108,7 @@ namespace ProjetWeb.Controllers
         {
             if (ModelState.IsValid)
             {
-                Abonné userRegistered = user.register();
+                Abonné userRegistered = user.register(db);
                 FormsAuthentication.SetAuthCookie(userRegistered.Code_Abonné.ToString(), false);
                 return RedirectToAction("Index", "Home");
             }
