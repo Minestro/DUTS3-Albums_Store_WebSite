@@ -276,6 +276,7 @@
     <Content Include="Views\Shared\_LoginNavBar.cshtml" />
     <Content Include="Views\Account\Index.cshtml" />
     <Content Include="Views\Account\Manage.cshtml" />
+    <Content Include="Views\Account\AddFunds.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

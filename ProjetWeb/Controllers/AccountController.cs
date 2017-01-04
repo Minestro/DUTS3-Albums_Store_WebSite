@@ -120,5 +120,29 @@ namespace ProjetWeb.Controllers
             FormsAuthentication.SignOut();
             return RedirectToAction("Index", "Home");
         }
+
+        [Authorize]
+        public ActionResult AddFunds()
+        {
+            return View();
+        }
+
+        [Authorize]
+        [HttpPost]
+        public ActionResult AddFunds(int quantity)
+        {
+            Abonné user = ViewModels.User.getUserByID(int.Parse(User.Identity.Name), db);
+            if (user != null)
+            {
+                user.Credit += quantity;
+                db.SaveChanges();
+                ViewBag.SuccessMessage = "Les fonds ont bien été ajoutés";
+                return View(user);
+            } else
+            {
+                FormsAuthentication.SignOut();
+                return RedirectToAction("Login", "Account");
+            }
+        }
     }
 }
