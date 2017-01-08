@@ -323,6 +323,7 @@
     <Content Include="Web References\com.amazon.amazonaws\SimilarityLookupResponse.datasource">
       <DependentUpon>Reference.map</DependentUpon>
     </Content>
+    <Content Include="Views\Account\AddFunds.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
