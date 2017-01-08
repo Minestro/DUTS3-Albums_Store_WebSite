@@ -1,7 +1,7 @@
-﻿@model ProjetWeb.Models.Album
+﻿@model ProjetWeb.ViewModels.AlbumViewModels
 
 @{
-    ViewBag.Title = "Details de " + Model.Titre_Album;
+    ViewBag.Title = "Details de " + Model.Album.Titre_Album;
 }
 
 <div class="row">
@@ -15,10 +15,11 @@
     </div>
     <div class="col-md-9">
         <div class="thumbnail">
-            <img class="img-responsive center-block" src="@Url.Action("PochetteAlbum", "Media", new { id=Model.Code_Album})" alt="@Model.Titre_Album">
+            <img class="img-responsive center-block" src="@Url.Action("PochetteAlbum", "Media", new { id=Model.Album.Code_Album})" alt="@Model.Album.Titre_Album">
             <div class="caption-full">
-                <h4 class="pull-right">5 €</h4>
-                <h3>@Model.Titre_Album</h3>
+                <h4 class="pull-right">@Model.Prix</h4>
+                <h3>@Model.Album.Titre_Album</h3>
+                <p>@Model.Description</p>
             </div>
         </div>
     </div>
