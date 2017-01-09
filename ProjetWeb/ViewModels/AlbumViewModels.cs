@@ -12,35 +12,20 @@ namespace ProjetWeb.ViewModels
         public Album Album {get; set;}
         public string Description {get; set;}
         public string Prix { get; set; }
+        public List<Enregistrement> Enregistrements { get; set; } 
          
         public AlbumViewModels (Album album)
         {
             Album = album;
-            if (Album.ASIN != null)
+            Classique_WebEntities db = new Classique_WebEntities();
+            if (album!=null)
             {
-                AWSECommerceService service = new AWSECommerceService();
-
-                ItemLookup search = new ItemLookup();
-                ItemLookupRequest request = new ItemLookupRequest();
-                search.AssociateTag = "pro0f5-21";
-                search.AWSAccessKeyId = "AKIAIU6KMB72HSTD6FKA";
-
-                request.IdType = ItemLookupRequestIdType.ASIN;
-                request.ItemId = new string[] { Album.ASIN };
-                request.ResponseGroup = new string[] { "ItemAttributes" };
-
-                search.Request = new ItemLookupRequest[] { request };
-
-                ItemLookupResponse response = service.ItemLookup(search);
-
-                if (response != null)
-                {
-                    //Attribuer la valeur a Description et Prix
-                }
-            } else {
-                Description = "Aucune description";
-                Prix = "NAN";
+                Enregistrements = db.Album.Where(c => c.Code_Album == album.Code_Album)
+                    .SelectMany(c => db.Disque.Where(o => o.Code_Album == c.Code_Album))
+                    .SelectMany(c => db.Composition_Disque.Where(o => o.Code_Disque == c.Code_Disque))
+                    .SelectMany(c => db.Enregistrement.Where(o => o.Code_Morceau == c.Code_Morceau)).ToList();
             }
+
         }
     }
 }

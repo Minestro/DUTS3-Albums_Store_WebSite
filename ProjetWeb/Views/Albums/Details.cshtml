@@ -20,6 +20,15 @@
                 <h4 class="pull-right">@Model.Prix</h4>
                 <h3>@Model.Album.Titre_Album</h3>
                 <p>@Model.Description</p>
+                <ul>
+                @foreach(var enregistrement in Model.Enregistrements)
+                {
+                    <li>@enregistrement.Titre</li>
+                    <audio controls>
+                        <source src="@Url.Action("ExtraitMusique", "Media", new { id = enregistrement.Code_Morceau })"/>
+                    </audio>
+                }
+                </ul>
             </div>
         </div>
     </div>
