@@ -17,6 +17,8 @@ namespace ProjetWeb.ViewModels
         public AlbumViewModels (Album album)
         {
             Album = album;
+            Description = "Aucune Description";
+            Prix = "NAN";
             Classique_WebEntities db = new Classique_WebEntities();
             if (album!=null)
             {

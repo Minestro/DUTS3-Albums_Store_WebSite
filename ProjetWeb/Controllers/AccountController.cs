@@ -3,6 +3,7 @@ using ProjetWeb.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Security;
@@ -136,13 +137,73 @@ namespace ProjetWeb.Controllers
             {
                 user.Credit += quantity;
                 db.SaveChanges();
-                ViewBag.SuccessMessage = "Les fonds ont bien été ajoutés";
+                TempData["SuccessMessage"] = "Les fonds ont bien été ajoutés";
                 return View(user);
             } else
             {
                 FormsAuthentication.SignOut();
                 return RedirectToAction("Login", "Account");
             }
+        }
+
+        [Authorize]
+        public ActionResult AddToCart(int id)
+        {
+            TempData["SuccessMessage"] = "";
+            TempData["ErrorMessage"] = "";
+            Enregistrement enregistrement = db.Enregistrement.Find(id);
+            if (enregistrement == null)
+            {
+                TempData["ErrorMessage"] = "Erreur lors de l'ajout de l'article à votre panier.";
+            } else
+            {
+                if (Session["Cart"] == null || Session["Cart"].GetType() != typeof(List<int>))
+                {
+                    Session["Cart"] = new List<int>();
+                }
+                if (((List<int>)Session["Cart"]).Contains(enregistrement.Code_Morceau) == false)
+                {
+                    ((List<int>)Session["Cart"]).Add(enregistrement.Code_Morceau);
+                    TempData["SuccessMessage"] = "L'article a bien été ajouté à votre panier.";
+                }
+            }
+            return RedirectToAction("Cart", "Account");
+        }
+
+        [Authorize]
+        public ActionResult RemovefromCart(int id)
+        {
+            TempData["SuccessMessage"] = "";
+            TempData["ErrorMessage"] = "";
+            if (Session["Cart"] != null && Session["Cart"].GetType() == typeof(List<int>))
+            {
+                ((List<int>)Session["Cart"]).Remove(id);
+                TempData["SuccessMessage"] = "L'article a été supprimé de votre panier.";
+            }
+            return RedirectToAction("Cart", "Account");
+        }
+
+        [Authorize]
+        public ActionResult Cart()
+        {
+            CartViewModel model = new CartViewModel();
+            model.Enregistrements = new List<Enregistrement>();
+            float totalPrice = 0.00F;
+            if (Session["Cart"] == null || Session["Cart"].GetType() != typeof(List<int>))
+            {
+                Session["Cart"] = new List<int>();
+            }
+            foreach (var codeEnregistrement in ((List<int>)Session["Cart"]))
+            {
+                Enregistrement enregistrement = db.Enregistrement.Find(codeEnregistrement);
+                if (enregistrement != null)
+                {
+                    model.Enregistrements.Add(enregistrement);
+                    totalPrice += (float)enregistrement.Prix;
+                }
+            }
+            model.PrixTotal = totalPrice;
+            return View(model);
         }
     }
 }

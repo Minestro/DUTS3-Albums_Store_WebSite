@@ -1,0 +1,43 @@
+﻿@model ProjetWeb.ViewModels.CartViewModel
+
+@{
+    ViewBag.Title = "Votre Panier";
+}
+@if (TempData["SuccessMessage"] != null && ((string)TempData["SuccessMessage"]).Length > 0)
+{
+    <div class="alert alert-success">@TempData["SuccessMessage"]</div>
+}
+@if (TempData["ErrorMessage"] != null && ((string)TempData["ErrorMessage"]).Length > 0)
+{
+    <div class="alert alert-danger">@TempData["ErrorMessage"]</div>
+}
+
+
+<table class="table">
+    <thread>
+        <tr>
+            <th>Nom Morceau</th>
+            <th>Prix</th>
+            <th></th>
+        </tr>
+    </thread>
+    <tbody>
+        @foreach (var enregistrement in Model.Enregistrements)
+        {
+            <tr>
+                <th>
+                    @enregistrement.Titre
+                </th>
+                <th>
+                    @enregistrement.Prix.ToString().Substring(0, 4) €
+                </th>
+                <th>
+                    <a href="@Url.Action("RemoveFromCart", "Account", new { id= enregistrement.Code_Morceau })">
+                        <img src="~/img/delete_from_cart.png" style="height:30px; width:auto;" alt="Ajouter au panier" />
+                    </a>
+                </th>
+            </tr>
+        }
+    </tbody>
+</table>
+<p>Prix Total : @Model.PrixTotal €</p>

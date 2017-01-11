@@ -16,20 +16,46 @@
     <div class="col-md-9">
         <div class="thumbnail">
             <img class="img-responsive center-block" src="@Url.Action("PochetteAlbum", "Media", new { id=Model.Album.Code_Album})" alt="@Model.Album.Titre_Album">
-            <div class="caption-full">
-                <h4 class="pull-right">@Model.Prix</h4>
-                <h3>@Model.Album.Titre_Album</h3>
-                <p>@Model.Description</p>
-                <ul>
-                @foreach(var enregistrement in Model.Enregistrements)
-                {
-                    <li>@enregistrement.Titre</li>
-                    <audio controls>
-                        <source src="@Url.Action("ExtraitMusique", "Media", new { id = enregistrement.Code_Morceau })"/>
-                    </audio>
-                }
-                </ul>
-            </div>
+            <h4 class="pull-right">@Model.Prix</h4>
+            <h3>@Model.Album.Titre_Album</h3>
+            <p>@Model.Description</p>
+            <table class="table">
+                <thread>
+                    <tr>
+                        <th>Nom Morceau</th>
+                        <th>Durée</th>
+                        <th>Extrait</th>
+                        <th>Prix</th>
+                        <th></th>
+                    </tr>
+                </thread>
+                <tbody>
+                    @foreach (var enregistrement in Model.Enregistrements)
+                    {
+                        <tr>
+                            <th>
+                                @enregistrement.Titre
+                            </th>
+                            <th>
+                                @enregistrement.Durée
+                            </th>
+                            <th>
+                                <audio controls preload="none" style="width:200px;">
+                                    <source src="@Url.Action("ExtraitMusique", "Media", new { id = enregistrement.Code_Morceau })" />
+                                </audio>
+                            </th>
+                            <th>
+                                @enregistrement.Prix.ToString().Substring(0,4) €
+                            </th>
+                            <th>
+                                <a href="@Url.Action("AddToCart", "Account", new { id= enregistrement.Code_Morceau })">
+                                    <img src="~/img/add_to_cart.png" style="height:30px; width:auto;" alt="Ajouter au panier"/>
+                                </a>
+                            </th>
+                        </tr>
+                    }
+                </tbody>
+            </table>
         </div>
     </div>
 </div>
