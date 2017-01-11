@@ -171,6 +171,7 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\MediaController.cs" />
+    <Compile Include="Controllers\MusiciensController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -260,6 +261,7 @@
     </Compile>
     <Compile Include="ViewModels\AccountViewModels.cs" />
     <Compile Include="ViewModels\AlbumViewModels.cs" />
+    <Compile Include="ViewModels\MusicienViewModels.cs" />
     <Compile Include="Web References\com.amazon.amazonaws\Reference.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -291,6 +293,11 @@
     <Content Include="Views\Shared\_LoginNavBar.cshtml" />
     <Content Include="Views\Account\Index.cshtml" />
     <Content Include="Views\Account\Manage.cshtml" />
+    <Content Include="Views\Musiciens\Create.cshtml" />
+    <Content Include="Views\Musiciens\Delete.cshtml" />
+    <Content Include="Views\Musiciens\Details.cshtml" />
+    <Content Include="Views\Musiciens\Edit.cshtml" />
+    <Content Include="Views\Musiciens\Index.cshtml" />
     <None Include="Web References\com.amazon.amazonaws\AWSECommerceService.wsdl" />
     <Content Include="Web References\com.amazon.amazonaws\BrowseNodeLookupResponse.datasource">
       <DependentUpon>Reference.map</DependentUpon>

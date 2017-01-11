@@ -29,6 +29,13 @@
                     </audio>
                 }
                 </ul>
+                <p> Compositeurs :</p>
+                <ul>
+                @foreach (var compositeur in Model.Musiciens)
+                {
+                    <a href="http://localhost:59540/Musiciens/Details/@compositeur.Code_Musicien">@compositeur.Nom_Musicien @compositeur.Prénom_Musicien</a>
+                }
+                </ul>
             </div>
         </div>
     </div>
