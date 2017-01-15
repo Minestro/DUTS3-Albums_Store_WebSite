@@ -1,0 +1,29 @@
+﻿@model ProjetWeb.ViewModels.OeuvreViewModel
+@{
+    ViewBag.title = "Details de " + Model.Oeuvre.Titre_Oeuvre;
+}
+
+<div class="col-md-9">
+    <h4>@Model.Oeuvre.Titre_Oeuvre</h4>
+    <p><span class="label label-default">Sous-titre</span> @Model.Oeuvre.Sous_Titre</p>
+    <p><span class="label label-default">Tonalité</span> @Model.Oeuvre.Tonalité</p>
+    <p><span class="label label-default">Opus</span> @Model.Oeuvre.Opus</p>
+    <p>
+        <span class="label label-default">Compositeurs</span>
+        <ul>
+            @foreach (var compositeur in Model.Compositeurs)
+            {
+                <li>@Html.ActionLink(compositeur.Nom_Musicien + " " + compositeur.Prénom_Musicien, "Details", "Musiciens", new { id = compositeur.Code_Musicien }, null)</li>
+            }
+        </ul>
+    </p>
+    <p>
+        <span class="label label-default">Liste des albums où apparait cette oeuvre :</span>
+        <ul>
+            @foreach (var album in Model.Albums)
+            {
+                <li>@Html.ActionLink(album.Titre_Album, "Details", "Albums", new { id = album.Code_Album }, null)</li>
+            }
+        </ul>
+    </p>
+</div>

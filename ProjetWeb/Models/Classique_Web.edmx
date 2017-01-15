@@ -10,9 +10,8 @@
             <PropertyRef Name="Code_Abonné" />
           </Key>
           <Property Name="Code_Abonné" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Nom_Abonné" Type="nchar" MaxLength="50" Nullable="false" />
-          <Property Name="Prénom_Abonné" Type="nchar" MaxLength="20" />
-          <Property Name="Login" Type="nchar" MaxLength="10" />
+          <Property Name="Nom_Abonné" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Login" Type="nvarchar" MaxLength="10" />
           <Property Name="Password" Type="nvarchar" MaxLength="80" />
           <Property Name="Adresse" Type="varchar" MaxLength="50" />
           <Property Name="Ville" Type="varchar" MaxLength="50" />
@@ -21,14 +20,15 @@
           <Property Name="Email" Type="nvarchar(max)" />
           <Property Name="UserId" Type="nvarchar" MaxLength="128" />
           <Property Name="Credit" Type="int" />
+          <Property Name="Prenom_Abonné" Type="nvarchar" MaxLength="20" />
         </EntityType>
         <EntityType Name="Achat">
           <Key>
             <PropertyRef Name="Code_Achat" />
           </Key>
           <Property Name="Code_Achat" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Code_Enregistrement" Type="int" Nullable="false" />
-          <Property Name="Code_Abonné" Type="int" Nullable="false" />
+          <Property Name="Code_Enregistrement" Type="int" />
+          <Property Name="Code_Abonné" Type="int" />
         </EntityType>
         <EntityType Name="Album">
           <Key>
@@ -219,7 +219,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Achat_Abonné">
-          <End Role="Abonné" Type="Self.Abonné" Multiplicity="1" />
+          <End Role="Abonné" Type="Self.Abonné" Multiplicity="0..1" />
           <End Role="Achat" Type="Self.Achat" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Abonné">
@@ -231,7 +231,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Achat_Enregistrement">
-          <End Role="Enregistrement" Type="Self.Enregistrement" Multiplicity="1" />
+          <End Role="Enregistrement" Type="Self.Enregistrement" Multiplicity="0..1" />
           <End Role="Achat" Type="Self.Achat" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Enregistrement">
@@ -655,9 +655,8 @@
             <PropertyRef Name="Code_Abonné" />
           </Key>
           <Property Name="Code_Abonné" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Nom_Abonné" Type="String" MaxLength="50" FixedLength="true" Unicode="true" Nullable="false" />
-          <Property Name="Prénom_Abonné" Type="String" MaxLength="20" FixedLength="true" Unicode="true" />
-          <Property Name="Login" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="Nom_Abonné" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Login" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
           <Property Name="Password" Type="String" MaxLength="80" FixedLength="false" Unicode="true" />
           <Property Name="Adresse" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="Ville" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
@@ -666,6 +665,7 @@
           <Property Name="Email" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="UserId" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
           <Property Name="Credit" Type="Int32" />
+          <Property Name="Prenom_Abonné" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Pays" Relationship="Self.FK__Abonné__Code_Pay__236943A5" FromRole="Abonné" ToRole="Pays" />
           <NavigationProperty Name="Achat" Relationship="Self.FK_Achat_Abonné" FromRole="Abonné" ToRole="Achat" />
         </EntityType>
@@ -674,8 +674,8 @@
             <PropertyRef Name="Code_Achat" />
           </Key>
           <Property Name="Code_Achat" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Code_Enregistrement" Type="Int32" Nullable="false" />
-          <Property Name="Code_Abonné" Type="Int32" Nullable="false" />
+          <Property Name="Code_Enregistrement" Type="Int32" />
+          <Property Name="Code_Abonné" Type="Int32" />
           <NavigationProperty Name="Abonné" Relationship="Self.FK_Achat_Abonné" FromRole="Achat" ToRole="Abonné" />
           <NavigationProperty Name="Enregistrement" Relationship="Self.FK_Achat_Enregistrement" FromRole="Achat" ToRole="Enregistrement" />
         </EntityType>
@@ -916,7 +916,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Achat_Abonné">
-          <End Role="Abonné" Type="Self.Abonné" Multiplicity="1" />
+          <End Role="Abonné" Type="Self.Abonné" Multiplicity="0..1" />
           <End Role="Achat" Type="Self.Achat" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Abonné">
@@ -928,7 +928,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Achat_Enregistrement">
-          <End Role="Enregistrement" Type="Self.Enregistrement" Multiplicity="1" />
+          <End Role="Enregistrement" Type="Self.Enregistrement" Multiplicity="0..1" />
           <End Role="Achat" Type="Self.Achat" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Enregistrement">
@@ -1353,7 +1353,6 @@
               <MappingFragment StoreEntitySet="Abonné">
                 <ScalarProperty Name="Code_Abonné" ColumnName="Code_Abonné" />
                 <ScalarProperty Name="Nom_Abonné" ColumnName="Nom_Abonné" />
-                <ScalarProperty Name="Prénom_Abonné" ColumnName="Prénom_Abonné" />
                 <ScalarProperty Name="Login" ColumnName="Login" />
                 <ScalarProperty Name="Password" ColumnName="Password" />
                 <ScalarProperty Name="Adresse" ColumnName="Adresse" />
@@ -1363,6 +1362,7 @@
                 <ScalarProperty Name="Email" ColumnName="Email" />
                 <ScalarProperty Name="UserId" ColumnName="UserId" />
                 <ScalarProperty Name="Credit" ColumnName="Credit" />
+                <ScalarProperty Name="Prenom_Abonné" ColumnName="Prenom_Abonné" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

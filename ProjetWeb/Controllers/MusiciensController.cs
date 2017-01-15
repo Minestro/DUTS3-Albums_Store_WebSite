@@ -14,13 +14,7 @@ namespace ProjetWeb.Controllers
     public class MusiciensController : Controller
     {
         private Classique_WebEntities db = new Classique_WebEntities();
-        
-        public ActionResult Index()
-        {
-            var musicien = db.Musicien.Include(m => m.Genre).Include(m => m.Instrument).Include(m => m.Pays);
-            return View(musicien.ToList());
-        }
-        
+              
         public ActionResult Details(int? id)
         {
             if (id == null)
