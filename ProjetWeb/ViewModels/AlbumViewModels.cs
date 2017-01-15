@@ -14,7 +14,7 @@ namespace ProjetWeb.ViewModels
         public string Prix { get; set; }
         public List<Enregistrement> Enregistrements { get; set; }   //Les morceaux de l'album
         public List<Composition> Compositeurs { get; set; } //Les compositeurs de cet album
-        public List<Album> Albums { get; set; } //Les albums du même artiste
+        public List<Album> Albums { get; set; } //Les albums du même genre
 
         public AlbumViewModels (Album album)
         {
@@ -29,7 +29,20 @@ namespace ProjetWeb.ViewModels
                     .SelectMany(c => db.Composition_Disque.Where(o => o.Code_Disque == c.Code_Disque))
                     .SelectMany(c => db.Enregistrement.Where(o => o.Code_Morceau == c.Code_Morceau)).ToList();
 
-                Albums = db.Album.
+                Albums = db.Album.Where(c => c.Code_Genre == album.Code_Genre).ToList();
+                if (Albums != null)
+                {
+                    Random rng = new Random();
+                    int n = Albums.Count;
+                    while (n > 1)
+                    {
+                        n--;
+                        int k = rng.Next(n + 1);
+                        Album value = Albums[k];
+                        Albums[k] = Albums[n];
+                        Albums[n] = value;
+                    }
+                }
 
                 //TODO
                 /*Compositeurs = db.Album.Where(m => m.Code_Album == album.Code_Album)

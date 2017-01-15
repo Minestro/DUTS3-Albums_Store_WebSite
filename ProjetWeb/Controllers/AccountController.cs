@@ -137,7 +137,7 @@ namespace ProjetWeb.Controllers
             {
                 user.Credit += quantity;
                 db.SaveChanges();
-                TempData["SuccessMessage"] = "Les fonds ont bien été ajoutés";
+                ViewBag.SuccessMessage = "Les fonds ont bien été ajoutés";
                 return View(user);
             } else
             {
