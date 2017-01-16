@@ -5,23 +5,20 @@
 }
 
 <div class="row">
-    <div class="col-md-3">
-        <p class="lead">Musiciens :</p>
-        <div class="list-group">
-            <a href="#" class="list-group-item active">Category 1</a>
-            <a href="#" class="list-group-item">Category 2</a>
-            <a href="#" class="list-group-item">Category 3</a>
-        </div>
-    </div>
     <div class="col-md-9">
         <div class="thumbnail">
-            <img class="img-responsive center-block" src="@Url.Action("PhotoMusicien", "Media", new { id=Model.Musicien.Code_Musicien})" alt="@Model.Musicien.Nom_Musicien">
+            <img class="img-responsive pull-left" style="margin:10px;" src="@Url.Action("PhotoMusicien", "Media", new { id=Model.Musicien.Code_Musicien})" alt="@Model.Musicien.Nom_Musicien">
             <h3>@Model.Musicien.Nom_Musicien @Model.Musicien.Prénom_Musicien</h3>
+            <p>Date de naissance : @Model.Musicien.Année_Naissance</p>
+            @if (Model.Musicien.Année_Mort > 0) { <p>Date de mort : @Model.Musicien.Année_Mort</p> } else { <p> Encore vivant (quelle aubaine!) </p> }
+            <p>Genre : @Model.Musicien.Genre.Libellé_Abrégé</p>
+            <p>Son instrument préféré : @Model.Musicien.Instrument.Nom_Instrument</p>
+            <p>Origine : @Model.Musicien.Pays.Nom_Pays</p>
             <p>Liste de ses oeuvres :</p>
             <ul>
                 @foreach (var oeuvre in Model.Oeuvres)
                 {
-                    <li>@oeuvre.Titre_Oeuvre</li>
+                    @Html.ActionLink(oeuvre.Titre_Oeuvre, "Details", "Oeuvres", new { id = oeuvre.Code_Oeuvre }, null)
                 }
             </ul>
         </div>

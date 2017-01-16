@@ -170,6 +170,7 @@
     <Content Include="Web.Config" />
     <Content Include="Views\Recherche\RechercheAlbum.cshtml" />
     <Content Include="Views\Recherche\Index.cshtml" />
+    <Content Include="Views\Recherche\RechercheOeuvre.cshtml" />
     <None Include="Web.Debug.Config">
       <DependentUpon>Web.Config</DependentUpon>
     </None>
