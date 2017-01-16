@@ -115,7 +115,7 @@ namespace ProjetWeb.ViewModels
         public Abonné register(Classique_WebEntities db)
         {
             string passwordEncoded = Encode.EncodeMD5(Password);
-            Abonné abonné = new Abonné { Nom_Abonné = this.Nom_Abonné, Prénom_Abonné = this.Prénom_Abonné, Login = this.Login, Password = passwordEncoded, Email = this.Email, Credit = 0 };
+            Abonné abonné = new Abonné { Nom_Abonné = this.Nom_Abonné, Prenom_Abonné = this.Prénom_Abonné, Login = this.Login, Password = passwordEncoded, Email = this.Email, Credit = 0 };
             db.Abonné.Add(abonné);
             db.SaveChanges();
             return abonné;
@@ -198,7 +198,7 @@ namespace ProjetWeb.ViewModels
             {
                 this.Id = abonné.Code_Abonné;
                 this.Nom_Abonné = abonné.Nom_Abonné;
-                this.Prénom_Abonné = abonné.Prénom_Abonné;
+                this.Prénom_Abonné = abonné.Prenom_Abonné;
                 this.Adresse = abonné.Adresse;
                 this.Ville = abonné.Ville;
                 this.Code_Postal = abonné.Code_Postal;
@@ -213,7 +213,7 @@ namespace ProjetWeb.ViewModels
             if (abonné != null)
             {
                 abonné.Nom_Abonné = this.Nom_Abonné;
-                abonné.Prénom_Abonné = this.Prénom_Abonné;
+                abonné.Prenom_Abonné = this.Prénom_Abonné;
                 abonné.Code_Postal = this.Code_Postal;
                 abonné.Adresse = this.Adresse;
                 abonné.Ville = this.Ville;
