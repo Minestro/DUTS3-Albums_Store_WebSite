@@ -15,13 +15,13 @@ namespace ProjetWeb.Controllers
     {
         private Classique_WebEntities db = new Classique_WebEntities();
 
-        public ActionResult RechercheAlbum(string recherche)
+        public ActionResult RechercheAlbum(string id)
         {
-            if (recherche == null)
+            if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            List<Album> albums = db.Album.Where(m => m.Titre_Album.Contains(recherche)).ToList();
+            List<Album> albums = db.Album.Where(m => m.Titre_Album.Contains(id)).ToList();
             List<KeyValuePair<Album, string>> albumsPrixé = new List<KeyValuePair<Album, string>>();
             foreach (var album in albums)
             {
