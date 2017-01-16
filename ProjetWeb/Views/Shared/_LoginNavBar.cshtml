@@ -1,8 +1,26 @@
 ﻿@using System.Web.Security;
 @using System.Web.Mvc;
+@{ 
+    if (Session["Cart"] != null)
+    {
+        ViewBag.nbArticles = ((List<int>)Session["Cart"]).Count;
+    } else
+    {
+        ViewBag.nbArticles = 0;
+    }
+}
+
 @if (User.Identity.IsAuthenticated)
 {
     <ul class="nav navbar-nav navbar-right">
+        <li>
+            <a href="@Url.Action("Cart", "Account")" class="nav-icon-section">
+                <div class="nav-icon-container" id="cart-icon">
+                    <span class="label">@ViewBag.nbArticles</span>
+                </div>
+                <span class="title">Panier</span>
+            </a>
+        </li>
         <li>
             @Html.ActionLink("Bonjour " + ProjetWeb.ViewModels.User.getUserByID(int.Parse(User.Identity.Name)).Nom_Abonné + "!", "Index", "Account", routeValues: null, htmlAttributes: new { title = "Manage" })
         </li>

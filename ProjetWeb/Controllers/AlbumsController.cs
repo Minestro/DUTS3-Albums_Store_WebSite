@@ -15,12 +15,6 @@ namespace ProjetWeb.Controllers
     {
         private Classique_WebEntities db = new Classique_WebEntities();
 
-        public ActionResult Index()
-        {
-            var album = db.Album.Include(a => a.Editeur).Include(a => a.Genre);
-            return View(album.ToList());
-        }
-
         public ActionResult Details(int? id)
         {
             if (id == null)
@@ -32,7 +26,7 @@ namespace ProjetWeb.Controllers
             {
                 return HttpNotFound();
             }
-            AlbumViewModels model = new AlbumViewModels(album);
+            AlbumViewModels model = new AlbumViewModels(album, db);
             return View(model);
         }
     }

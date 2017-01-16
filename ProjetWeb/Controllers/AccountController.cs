@@ -205,5 +205,46 @@ namespace ProjetWeb.Controllers
             model.PrixTotal = totalPrice;
             return View(model);
         }
+
+        [Authorize]
+        public ActionResult Buy()
+        {
+            TempData["SuccessMessage"] = "";
+            TempData["ErrorMessage"] = "";
+            Abonné user = ViewModels.User.getUserByID(int.Parse(User.Identity.Name), db);
+            List<Achat> achats = new List<Achat>();
+            float price = 0.0F;
+            if (user == null)
+            {
+                FormsAuthentication.SignOut();
+                return RedirectToAction("Login", "Account");
+            }
+            if (Session["Cart"] == null || Session["Cart"].GetType() != typeof(List<int>))
+            {
+                Session["Cart"] = new List<int>();
+            }
+            List<int> cart = (List<int>)Session["Cart"];
+            foreach(int articleId in cart)
+            {
+                Enregistrement article = db.Enregistrement.Find(articleId);
+                if (article != null)
+                {
+                    price += (float)article.Prix;
+                    achats.Add(new Achat { Code_Abonné = user.Code_Abonné, Code_Enregistrement = article.Code_Morceau });
+                }
+            }
+            if (price <= user.Credit)
+            {
+                user.Credit -= (int)price;
+                db.Achat.AddRange(achats);
+                db.SaveChanges();
+                Session["Cart"] = new List<int>();
+                TempData["SuccessMessage"] = "Articles bien achetés";
+            } else
+            {
+                TempData["ErrorMessage"] = "Vos fonds sont insuffisants !";
+            }
+            return RedirectToAction("Cart", "Account");
+        }
     }
 }

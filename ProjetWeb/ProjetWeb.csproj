@@ -175,6 +175,10 @@
     <None Include="Web.Release.Config">
       <DependentUpon>Web.Config</DependentUpon>
     </None>
+    <Content Include="Scripts\spoiler.js" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Models\Abonné.cs">
@@ -221,6 +225,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\MediaController.cs" />
     <Compile Include="Controllers\MusiciensController.cs" />
+    <Compile Include="Controllers\OeuvresController.cs" />
     <Compile Include="Models\Direction.cs">
       <DependentUpon>Classique_Web.tt</DependentUpon>
     </Compile>
@@ -276,6 +281,7 @@
     <Compile Include="ViewModels\AlbumViewModels.cs" />
     <Compile Include="ViewModels\CartViewModel.cs" />
     <Compile Include="ViewModels\MusicienViewModels.cs" />
+    <Compile Include="ViewModels\OeuvreViewModel.cs" />
     <Compile Include="Web References\com.amazon.amazonaws\Reference.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -293,7 +299,6 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Home\APropos.cshtml" />
     <Content Include="Views\Albums\Details.cshtml" />
-    <Content Include="Views\Albums\Index.cshtml" />
     <Content Include="Views\Account\Login.cshtml" />
     <Content Include="Views\Account\Register.cshtml" />
     <Content Include="Views\Shared\_LoginNavBar.cshtml" />
@@ -301,7 +306,7 @@
     <Content Include="Views\Account\Manage.cshtml" />
     <Content Include="Views\Account\Cart.cshtml" />
     <Content Include="Views\Musiciens\Details.cshtml" />
-    <Content Include="Views\Musiciens\Index.cshtml" />
+    <Content Include="Views\Oeuvres\Details.cshtml" />
     <None Include="Web References\com.amazon.amazonaws\AWSECommerceService.wsdl" />
     <Content Include="Web References\com.amazon.amazonaws\BrowseNodeLookupResponse.datasource">
       <DependentUpon>Reference.map</DependentUpon>

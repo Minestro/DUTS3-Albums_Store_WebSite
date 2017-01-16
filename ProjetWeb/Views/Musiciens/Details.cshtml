@@ -16,7 +16,8 @@
     <div class="col-md-9">
         <div class="thumbnail">
             <img class="img-responsive center-block" src="@Url.Action("PhotoMusicien", "Media", new { id=Model.Musicien.Code_Musicien})" alt="@Model.Musicien.Nom_Musicien">
-            <h3>@Model.Musicien.Nom_Musicien + @Model.Musicien.Prénom_Musicien</h3>
+            <h3>@Model.Musicien.Nom_Musicien @Model.Musicien.Prénom_Musicien</h3>
+            <p>Liste de ses oeuvres :</p>
             <ul>
                 @foreach (var oeuvre in Model.Oeuvres)
                 {
