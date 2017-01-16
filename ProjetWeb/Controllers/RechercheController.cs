@@ -15,6 +15,28 @@ namespace ProjetWeb.Controllers
     {
         private Classique_WebEntities db = new Classique_WebEntities();
 
+        public ActionResult Index()
+        {
+            RechercheViewModels model = new RechercheViewModels();
+            return View(model);
+        }
+
+        [HttpPost]
+        public ActionResult Index(RechercheViewModels model)
+        {
+            if (ModelState.IsValid)
+            {
+                if (model.TypeRecherche == "Un album")
+                {
+                    return RedirectToAction("RechercheAlbum", "Recherche", new { id = model.Recherche });
+                } else if (model.TypeRecherche == "Une Oeuvre")
+                {
+                    return RedirectToAction("RechercheOeuvre", "Recherche", new { id = model.Recherche });
+                }
+            }
+            return View(model);
+        }
+
         public ActionResult RechercheAlbum(string id)
         {
             if (id == null)

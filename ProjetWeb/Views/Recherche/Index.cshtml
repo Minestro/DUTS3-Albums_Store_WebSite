@@ -1,0 +1,12 @@
+﻿@model ProjetWeb.ViewModels.RechercheViewModels
+@{
+    ViewBag.Title = "Rechercher";
+}
+
+<h2>Lancer une recherche :</h2>
+@using (Html.BeginForm())
+{
+    @Html.TextBoxFor(m => m.Recherche)
+    @Html.DropDownListFor(m => m.TypeRecherche, Model.TypesRecherche)
+    <input class="btn btn-primary btn-lg" type="submit" value="Rechercher" />
+}
