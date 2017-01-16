@@ -169,6 +169,7 @@
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Web.Config" />
     <Content Include="Views\Recherche\RechercheAlbum.cshtml" />
+    <Content Include="Views\Recherche\RechercheOeuvre.cshtml" />
     <None Include="Web.Debug.Config">
       <DependentUpon>Web.Config</DependentUpon>
     </None>
