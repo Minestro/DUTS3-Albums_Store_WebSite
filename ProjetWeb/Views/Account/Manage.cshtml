@@ -3,7 +3,12 @@
     ViewBag.Title = "Modifier vos informations";
 }
 <h2>Modifier vos informations</h2>
-<p style="color : green;">@ViewBag.MessageValidationResult</p>
+@if (!String.IsNullOrEmpty((string)@ViewBag.MessageValidationResult))
+{
+    <div class="alert alert-success">
+        @ViewBag.MessageValidationResult
+    </div>
+}
 @using (Html.BeginForm())
 {
     @Html.HiddenFor(m => m.Id)

@@ -1,6 +1,71 @@
-﻿
+﻿@model ProjetWeb.ViewModels.IndexViewModel
 @{
     ViewBag.Title = "Accueil";
 }
 
 <h2>Bienvenue sur le site d'e-commerce de Florent Mariotti et d'Alexandre Jacquot</h2>
+<h3>Albums les plus vendus :</h3>
+<div id="topAlbumsSlider" class="carousel slide" data-ride="carousel">
+    <!-- Indicators -->
+    <ol class="carousel-indicators">
+        @{
+            int i = 0;
+            foreach (var album in Model.AlbumsALaffiche)
+            {
+                if (i == 0)
+                {
+                    <li data-target="#topAlbumsSlider" data-slide-to="0" class="active"></li>
+                }
+                else
+                {
+                    <li data-target="#topAlbumsSlider" data-slide-to="@i "></li>
+                }
+                i++;
+            }
+        }
+    </ol>
+
+    <!-- Wrapper for slides -->
+    <div class="carousel-inner" role="listbox">
+
+        @{
+            i = 0;
+            foreach (var album in Model.AlbumsALaffiche)
+            {
+                if (i == 0)
+                {
+                    <div class="item active">
+                        <a href="@Url.Action("Details","Albums", new { id=album.Code_Album})">
+                            <img src="@Url.Action("PochetteAlbum", "Media", new { id=album.Code_Album})" alt="@album.Titre_Album" />
+                            <div class="carousel-caption">
+                                <h3>@album.Titre_Album</h3>
+                            </div>
+                        </a>
+                    </div>
+                }
+                else
+                {
+                    <div class="item">
+                        <a href="@Url.Action("Details","Albums", new { id=album.Code_Album})">
+                            <img src="@Url.Action("PochetteAlbum", "Media", new { id=album.Code_Album})" alt="@album.Titre_Album" />
+                            <div class="carousel-caption">
+                                <h3>@album.Titre_Album</h3>
+                            </div>
+                        </a>
+                    </div>
+                }
+                i++;
+            }
+        }
+    </div>
+
+    <!-- Left and right controls -->
+    <a class="left carousel-control" href="#topAlbumsSlider" role="button" data-slide="prev">
+        <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+        <span class="sr-only">Precedent</span>
+    </a>
+    <a class="right carousel-control" href="#topAlbumsSlider" role="button" data-slide="next">
+        <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+        <span class="sr-only">Suivant</span>
+    </a>
+</div>

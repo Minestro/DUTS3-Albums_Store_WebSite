@@ -135,7 +135,7 @@ namespace ProjetWeb.Controllers
             Abonné user = ViewModels.User.getUserByID(int.Parse(User.Identity.Name), db);
             if (user != null)
             {
-                user.Credit += quantity;
+                user.Crédit += quantity;
                 db.SaveChanges();
                 ViewBag.SuccessMessage = "Les fonds ont bien été ajoutés";
                 return View(user);
@@ -233,9 +233,9 @@ namespace ProjetWeb.Controllers
                     achats.Add(new Achat { Code_Abonné = user.Code_Abonné, Code_Enregistrement = article.Code_Morceau });
                 }
             }
-            if (price <= user.Credit)
+            if (price <= user.Crédit)
             {
-                user.Credit -= (int)price;
+                user.Crédit -= (int)price;
                 db.Achat.AddRange(achats);
                 db.SaveChanges();
                 Session["Cart"] = new List<int>();

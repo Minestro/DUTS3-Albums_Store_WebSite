@@ -5,29 +5,25 @@
     ViewBag.Title = "RechercheOeuvre";
 }
 
-<div class="row">
-    <div class="col-md-9">
-        <table class="table">
-            <thead>
-                <tr>
-                    <th>Titre de l'oeuvre</th>
-                    <th>Type</th>
-                    <th>Prix</th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach (var albumPrixé in Model)
-                {
-                    <tr>
-                        <td>@Html.ActionLink(oeuvrePrixé.Key.Titre_Oeuvre, "Details", "Oeuvres", new { id = albumPrixé.Key.Code_Oeuvre }, null)</td>
-                        <td>@oeuvrePrixé.</td>
-                        <td>@oeuvrePrixé.Value</td>
-                    </tr>
-                }
-            </tbody>
-        </table>
-    </div>
-</div>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Titre de l'oeuvre</th>
+            <th>Type</th>
+            <th>Prix</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var oeuvrePrixé in Model)
+        {
+            <tr>
+                <td>@Html.ActionLink(oeuvrePrixé.Key.Titre_Oeuvre, "Details", "Oeuvres", new { id = albumPrixé.Key.Code_Oeuvre }, null)</td>
+                <td>@oeuvrePrixé.</td>
+                <td>@oeuvrePrixé.Value</td>
+            </tr>
+        }
+    </tbody>
+</table>
 
 
 

@@ -18,7 +18,6 @@ namespace ProjetWeb.Models
         public Composition()
         {
             this.Composition_Oeuvre = new HashSet<Composition_Oeuvre>();
-            this.Enregistrement = new HashSet<Enregistrement>();
         }
     
         public int Code_Composition { get; set; }
@@ -28,7 +27,5 @@ namespace ProjetWeb.Models
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Composition_Oeuvre> Composition_Oeuvre { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Enregistrement> Enregistrement { get; set; }
     }
 }

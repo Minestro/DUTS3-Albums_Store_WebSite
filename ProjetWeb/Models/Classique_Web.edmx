@@ -19,8 +19,8 @@
           <Property Name="Code_Pays" Type="int" />
           <Property Name="Email" Type="nvarchar(max)" />
           <Property Name="UserId" Type="nvarchar" MaxLength="128" />
-          <Property Name="Credit" Type="int" />
-          <Property Name="Prenom_Abonné" Type="nvarchar" MaxLength="20" />
+          <Property Name="Crédit" Type="int" />
+          <Property Name="Prénom_Abonné" Type="nvarchar" MaxLength="40" />
         </EntityType>
         <EntityType Name="Achat">
           <Key>
@@ -120,7 +120,7 @@
             <PropertyRef Name="Code_Genre" />
           </Key>
           <Property Name="Code_Genre" Type="int" Nullable="false" />
-          <Property Name="Libellé_Abrégé" Type="nchar" MaxLength="30" Nullable="false" />
+          <Property Name="Libellé_Abrégé" Type="nvarchar" MaxLength="60" Nullable="false" />
         </EntityType>
         <EntityType Name="Instrument">
           <Key>
@@ -168,10 +168,10 @@
           <Property Name="Code_Oeuvre" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Titre_Oeuvre" Type="nvarchar" MaxLength="200" Nullable="false" />
           <Property Name="Sous_Titre" Type="nvarchar" MaxLength="200" />
-          <Property Name="Tonalité" Type="nchar" MaxLength="20" />
+          <Property Name="Tonalité" Type="nvarchar" MaxLength="40" />
           <Property Name="Code_Type" Type="int" />
           <Property Name="Année" Type="int" />
-          <Property Name="Opus" Type="nchar" MaxLength="20" />
+          <Property Name="Opus" Type="nvarchar" MaxLength="40" />
           <Property Name="Numéro_Opus" Type="int" />
         </EntityType>
         <EntityType Name="Orchestres">
@@ -458,18 +458,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Morceaux_Composition">
-          <End Role="Composition" Type="Self.Composition" Multiplicity="1" />
-          <End Role="Enregistrement" Type="Self.Enregistrement" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Composition">
-              <PropertyRef Name="Code_Composition" />
-            </Principal>
-            <Dependent Role="Enregistrement">
-              <PropertyRef Name="Code_Composition" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_Musicien_Instrument">
           <End Role="Instrument" Type="Self.Instrument" Multiplicity="0..1" />
           <End Role="Musicien" Type="Self.Musicien" Multiplicity="*" />
@@ -624,10 +612,6 @@
             <End Role="Musicien" EntitySet="Musicien" />
             <End Role="Interpréter" EntitySet="Interpréter" />
           </AssociationSet>
-          <AssociationSet Name="FK_Morceaux_Composition" Association="Self.FK_Morceaux_Composition">
-            <End Role="Composition" EntitySet="Composition" />
-            <End Role="Enregistrement" EntitySet="Enregistrement" />
-          </AssociationSet>
           <AssociationSet Name="FK_Musicien_Instrument" Association="Self.FK_Musicien_Instrument">
             <End Role="Instrument" EntitySet="Instrument" />
             <End Role="Musicien" EntitySet="Musicien" />
@@ -664,8 +648,8 @@
           <Property Name="Code_Pays" Type="Int32" />
           <Property Name="Email" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="UserId" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
-          <Property Name="Credit" Type="Int32" />
-          <Property Name="Prenom_Abonné" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="Crédit" Type="Int32" />
+          <Property Name="Prénom_Abonné" Type="String" MaxLength="40" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Pays" Relationship="Self.FK__Abonné__Code_Pay__236943A5" FromRole="Abonné" ToRole="Pays" />
           <NavigationProperty Name="Achat" Relationship="Self.FK_Achat_Abonné" FromRole="Abonné" ToRole="Achat" />
         </EntityType>
@@ -713,7 +697,6 @@
           <Property Name="Année" Type="Int32" />
           <Property Name="Composante_Composition" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Composition_Oeuvre" Relationship="Self.FK_Composition_Oeuvre_Composition" FromRole="Composition" ToRole="Composition_Oeuvre" />
-          <NavigationProperty Name="Enregistrement" Relationship="Self.FK_Morceaux_Composition" FromRole="Composition" ToRole="Enregistrement" />
         </EntityType>
         <EntityType Name="Composition_Disque">
           <Key>
@@ -782,7 +765,6 @@
           <Property Name="Prix" Type="Decimal" Precision="19" Scale="4" />
           <Property Name="Extrait" Type="Binary" MaxLength="Max" FixedLength="false" />
           <NavigationProperty Name="Achat" Relationship="Self.FK_Achat_Enregistrement" FromRole="Enregistrement" ToRole="Achat" />
-          <NavigationProperty Name="Composition" Relationship="Self.FK_Morceaux_Composition" FromRole="Enregistrement" ToRole="Composition" />
           <NavigationProperty Name="Composition_Disque" Relationship="Self.FK_Contenir_Morceaux_Morceaux" FromRole="Enregistrement" ToRole="Composition_Disque" />
           <NavigationProperty Name="Direction" Relationship="Self.FK_Direction_Morceaux" FromRole="Enregistrement" ToRole="Direction" />
           <NavigationProperty Name="Interpréter" Relationship="Self.FK_Interpréter_Morceaux" FromRole="Enregistrement" ToRole="Interpréter" />
@@ -792,7 +774,7 @@
             <PropertyRef Name="Code_Genre" />
           </Key>
           <Property Name="Code_Genre" Type="Int32" Nullable="false" />
-          <Property Name="Libellé_Abrégé" Type="String" MaxLength="30" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="Libellé_Abrégé" Type="String" MaxLength="60" FixedLength="false" Unicode="true" Nullable="false" />
           <NavigationProperty Name="Album" Relationship="Self.FK_Album_Genre" FromRole="Genre" ToRole="Album" />
           <NavigationProperty Name="Musicien" Relationship="Self.FK_Musicien_Musicien1" FromRole="Genre" ToRole="Musicien" />
         </EntityType>
@@ -856,10 +838,10 @@
           <Property Name="Code_Oeuvre" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Titre_Oeuvre" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Sous_Titre" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
-          <Property Name="Tonalité" Type="String" MaxLength="20" FixedLength="true" Unicode="true" />
+          <Property Name="Tonalité" Type="String" MaxLength="40" FixedLength="false" Unicode="true" />
           <Property Name="Code_Type" Type="Int32" />
           <Property Name="Année" Type="Int32" />
-          <Property Name="Opus" Type="String" MaxLength="20" FixedLength="true" Unicode="true" />
+          <Property Name="Opus" Type="String" MaxLength="40" FixedLength="false" Unicode="true" />
           <Property Name="Numéro_Opus" Type="Int32" />
           <NavigationProperty Name="Composer" Relationship="Self.FK_Composer_Oeuvre" FromRole="Oeuvre" ToRole="Composer" />
           <NavigationProperty Name="Composition_Oeuvre" Relationship="Self.FK_Composition_Oeuvre_Oeuvre" FromRole="Oeuvre" ToRole="Composition_Oeuvre" />
@@ -1007,18 +989,6 @@
               <PropertyRef Name="Code_Composition" />
             </Principal>
             <Dependent Role="Composition_Oeuvre">
-              <PropertyRef Name="Code_Composition" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Morceaux_Composition">
-          <End Role="Composition" Type="Self.Composition" Multiplicity="1" />
-          <End Role="Enregistrement" Type="Self.Enregistrement" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Composition">
-              <PropertyRef Name="Code_Composition" />
-            </Principal>
-            <Dependent Role="Enregistrement">
               <PropertyRef Name="Code_Composition" />
             </Dependent>
           </ReferentialConstraint>
@@ -1273,10 +1243,6 @@
             <End Role="Composition" EntitySet="Composition" />
             <End Role="Composition_Oeuvre" EntitySet="Composition_Oeuvre" />
           </AssociationSet>
-          <AssociationSet Name="FK_Morceaux_Composition" Association="Self.FK_Morceaux_Composition">
-            <End Role="Composition" EntitySet="Composition" />
-            <End Role="Enregistrement" EntitySet="Enregistrement" />
-          </AssociationSet>
           <AssociationSet Name="FK_Contenir_Morceaux_Disque" Association="Self.FK_Contenir_Morceaux_Disque">
             <End Role="Disque" EntitySet="Disque" />
             <End Role="Composition_Disque" EntitySet="Composition_Disque" />
@@ -1361,8 +1327,8 @@
                 <ScalarProperty Name="Code_Pays" ColumnName="Code_Pays" />
                 <ScalarProperty Name="Email" ColumnName="Email" />
                 <ScalarProperty Name="UserId" ColumnName="UserId" />
-                <ScalarProperty Name="Credit" ColumnName="Credit" />
-                <ScalarProperty Name="Prenom_Abonné" ColumnName="Prenom_Abonné" />
+                <ScalarProperty Name="Crédit" ColumnName="Crédit" />
+                <ScalarProperty Name="Prénom_Abonné" ColumnName="Prénom_Abonné" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

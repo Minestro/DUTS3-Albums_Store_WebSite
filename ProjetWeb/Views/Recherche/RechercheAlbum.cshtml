@@ -5,29 +5,27 @@
     ViewBag.Title = "RechercheAlbum";
 }
 
-<div class="row">
-    <div class="col-md-9">
-        <table class="table">
-            <thead>
+    <p>@Model.Count Résultats</p>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Titre de l'album</th>
+                <th>Pochette</th>
+                <th>Prix</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var albumPrixé in Model)
+            {
                 <tr>
-                    <th>Titre de l'album</th>
-                    <th>Pochette</th>
-                    <th>Prix</th>
+                    <td>@Html.ActionLink(albumPrixé.Key.Titre_Album, "Details","Albums", new { id=albumPrixé.Key.Code_Album}, null)</td>
+                    <td><img class="img-thumbnail center-block" src="@Url.Action("PochetteAlbum", "Media", new { id=albumPrixé.Key.Code_Album})" alt="@albumPrixé.Key.Titre_Album" /></td>
+                    <td>@albumPrixé.Value</td>
                 </tr>
-            </thead>
-            <tbody>
-                @foreach (var albumPrixé in Model)
-                {
-                    <tr>
-                        <td>@Html.ActionLink(albumPrixé.Key.Titre_Album, "Details","Albums", new { id=albumPrixé.Key.Code_Album}, null)</td>
-                        <td><img class="img-responsive center-block" src="@Url.Action("PochetteAlbum", "Media", new { id=albumPrixé.Key.Code_Album})" alt="@albumPrixé.Key.Titre_Album"></td>
-                        <td>@albumPrixé.Value</td>
-                    </tr>
-                }  
-            </tbody>
-        </table>
-    </div>
-</div>
+            }  
+        </tbody>
+    </table>
+
 
 
 

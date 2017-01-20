@@ -5,8 +5,16 @@
 
 <h2>Lancer une recherche :</h2>
 @using (Html.BeginForm())
-{
-    @Html.TextBoxFor(m => m.Recherche)
-    @Html.DropDownListFor(m => m.TypeRecherche, Model.TypesRecherche)
-    <input class="btn btn-primary btn-lg" type="submit" value="Rechercher" />
+{ 
+    <div class="input-group input-group-lg">
+        <span class="input-group-btn" id="drop-down-search-bar">
+            @Html.DropDownListFor(m => m.TypeRecherche, Model.TypesRecherche, new { @class = "selectpicker form-control", @style = "height:46px; border-radius: 7px 0px 0px 7px;" })
+         </span>
+        @Html.TextBoxFor(m => m.Recherche, new { @class = "form-control" })
+        <span class="input-group-btn">
+            <button class="btn btn-primary btn-lg" type="submit" value="Rechercher">
+                <span class="glyphicon glyphicon-search"></span> Rechercher
+            </button>
+        </span>
+</div>
 }

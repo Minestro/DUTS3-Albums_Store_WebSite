@@ -69,3 +69,20 @@ input[type="checkbox"].input-validation-error {
     top: -7px;
     font-size: 14px;
 }
+
+#drop-down-search-bar {
+    width: 20%;
+    min-width: 100px;
+}
+
+table .img-thumbnail {
+    width: 200px;
+    height : auto;
+}
+
+.carousel-inner > .item > img,
+  .carousel-inner > .item > a > img {
+      height: 70vh;
+      width: auto;
+      margin: auto;
+  }

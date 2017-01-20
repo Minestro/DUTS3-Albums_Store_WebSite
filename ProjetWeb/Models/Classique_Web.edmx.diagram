@@ -4,28 +4,28 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="11935a90ce954c4ab55fa43cc6ee4630" Name="Diagram1">
-        <EntityTypeShape EntityType="Classique_WebModel.Abonné" Width="1.5" PointX="6" PointY="9.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="Classique_WebModel.Achat" Width="1.5" PointX="8.25" PointY="10.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="Classique_WebModel.Album" Width="1.5" PointX="8.25" PointY="14" IsExpanded="true" />
-        <EntityTypeShape EntityType="Classique_WebModel.Composer" Width="1.5" PointX="8.25" PointY="5.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="Classique_WebModel.Composition" Width="1.5" PointX="1.5" PointY="14.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="Classique_WebModel.Composition_Disque" Width="1.5" PointX="12.75" PointY="11.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="Classique_WebModel.Composition_Oeuvre" Width="1.5" PointX="3.75" PointY="14.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="Classique_WebModel.Direction" Width="1.5" PointX="8.25" PointY="2.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="Classique_WebModel.Disque" Width="1.5" PointX="10.5" PointY="14.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="Classique_WebModel.Editeur" Width="1.5" PointX="6" PointY="14.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="Classique_WebModel.Enregistrement" Width="1.5" PointX="0.75" PointY="9.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="Classique_WebModel.Genre" Width="1.5" PointX="3.75" PointY="8.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="Classique_WebModel.Instrument" Width="1.5" PointX="0.75" PointY="5.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="Classique_WebModel.Instrumentation" Width="1.5" PointX="3" PointY="5.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="Classique_WebModel.Interpréter" Width="1.5" PointX="3" PointY="2.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="Classique_WebModel.Musicien" Width="1.5" PointX="6" PointY="4.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="Classique_WebModel.Oeuvre" Width="1.5" PointX="0.75" PointY="1.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="Classique_WebModel.Orchestres" Width="1.5" PointX="6" PointY="2" IsExpanded="true" />
-        <EntityTypeShape EntityType="Classique_WebModel.Pays" Width="1.5" PointX="3.75" PointY="11.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="Classique_WebModel.sysdiagrams" Width="1.5" PointX="10.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="Classique_WebModel.Type_Morceaux" Width="1.5" PointX="1.5" PointY="18" IsExpanded="true" />
+      <Diagram DiagramId="41a9d3fbb37e404b955dfe71c8f4af55" Name="Diagram1">
+        <EntityTypeShape EntityType="Classique_WebModel.Abonné" Width="1.5" PointX="6" PointY="10.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Classique_WebModel.Achat" Width="1.5" PointX="8.25" PointY="11.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="Classique_WebModel.Album" Width="1.5" PointX="8.25" PointY="14.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="Classique_WebModel.Composer" Width="1.5" PointX="8.25" PointY="6.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Classique_WebModel.Composition" Width="1.5" PointX="0.75" PointY="17.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="Classique_WebModel.Composition_Disque" Width="1.5" PointX="12.75" PointY="12.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="Classique_WebModel.Composition_Oeuvre" Width="1.5" PointX="3" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Classique_WebModel.Direction" Width="1.5" PointX="8.25" PointY="3.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="Classique_WebModel.Disque" Width="1.5" PointX="10.5" PointY="15.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="Classique_WebModel.Editeur" Width="1.5" PointX="6" PointY="15.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="Classique_WebModel.Enregistrement" Width="1.5" PointX="0.75" PointY="10.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="Classique_WebModel.Genre" Width="1.5" PointX="3.75" PointY="9.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="Classique_WebModel.Instrument" Width="1.5" PointX="0.75" PointY="6.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="Classique_WebModel.Instrumentation" Width="1.5" PointX="3" PointY="6.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Classique_WebModel.Interpréter" Width="1.5" PointX="3" PointY="3.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="Classique_WebModel.Musicien" Width="1.5" PointX="6" PointY="5.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Classique_WebModel.Oeuvre" Width="1.5" PointX="0.75" PointY="2.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="Classique_WebModel.Orchestres" Width="1.5" PointX="6" PointY="3" IsExpanded="true" />
+        <EntityTypeShape EntityType="Classique_WebModel.Pays" Width="1.5" PointX="3.75" PointY="12" IsExpanded="true" />
+        <EntityTypeShape EntityType="Classique_WebModel.sysdiagrams" Width="1.5" PointX="10.75" PointY="1.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="Classique_WebModel.Type_Morceaux" Width="1.5" PointX="1.5" PointY="14.875" IsExpanded="true" />
         <AssociationConnector Association="Classique_WebModel.FK__Abonné__Code_Pay__236943A5" ManuallyRouted="false" />
         <AssociationConnector Association="Classique_WebModel.FK_Achat_Abonné" ManuallyRouted="false" />
         <AssociationConnector Association="Classique_WebModel.FK_Achat_Enregistrement" ManuallyRouted="false" />
@@ -35,7 +35,6 @@
         <AssociationConnector Association="Classique_WebModel.FK_Composer_Musicien" ManuallyRouted="false" />
         <AssociationConnector Association="Classique_WebModel.FK_Composer_Oeuvre" ManuallyRouted="false" />
         <AssociationConnector Association="Classique_WebModel.FK_Composition_Oeuvre_Composition" ManuallyRouted="false" />
-        <AssociationConnector Association="Classique_WebModel.FK_Morceaux_Composition" ManuallyRouted="false" />
         <AssociationConnector Association="Classique_WebModel.FK_Contenir_Morceaux_Disque" ManuallyRouted="false" />
         <AssociationConnector Association="Classique_WebModel.FK_Contenir_Morceaux_Morceaux" ManuallyRouted="false" />
         <AssociationConnector Association="Classique_WebModel.FK_Composition_Oeuvre_Oeuvre" ManuallyRouted="false" />

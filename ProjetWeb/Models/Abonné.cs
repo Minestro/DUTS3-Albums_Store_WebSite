@@ -30,8 +30,8 @@ namespace ProjetWeb.Models
         public Nullable<int> Code_Pays { get; set; }
         public string Email { get; set; }
         public string UserId { get; set; }
-        public Nullable<int> Credit { get; set; }
-        public string Prenom_Abonné { get; set; }
+        public Nullable<int> Crédit { get; set; }
+        public string Prénom_Abonné { get; set; }
     
         public virtual Pays Pays { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

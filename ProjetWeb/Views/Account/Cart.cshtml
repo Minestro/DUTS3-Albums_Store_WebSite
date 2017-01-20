@@ -3,11 +3,11 @@
 @{
     ViewBag.Title = "Votre Panier";
 }
-@if (TempData["SuccessMessage"] != null && ((string)TempData["SuccessMessage"]).Length > 0)
+@if (!String.IsNullOrEmpty((string)TempData["SuccessMessage"]))
 {
     <div class="alert alert-success">@TempData["SuccessMessage"]</div>
 }
-@if (TempData["ErrorMessage"] != null && ((string)TempData["ErrorMessage"]).Length > 0)
+@if (!String.IsNullOrEmpty((string)TempData["ErrorMessage"]))
 {
     <div class="alert alert-danger">@TempData["ErrorMessage"]</div>
 }
