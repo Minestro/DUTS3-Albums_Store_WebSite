@@ -29,7 +29,7 @@ namespace ProjetWeb.Controllers
                 if (model.TypeRecherche == "Un album")
                 {
                     return RedirectToAction("RechercheAlbum", "Recherche", new { id = model.Recherche });
-                } else if (model.TypeRecherche == "Une Oeuvre")
+                } else if (model.TypeRecherche == "Une oeuvre")
                 {
                     return RedirectToAction("RechercheOeuvre", "Recherche", new { id = model.Recherche });
                 }
@@ -54,6 +54,16 @@ namespace ProjetWeb.Controllers
                 return HttpNotFound();
             }
             return View(albumsPrixé);
+        }
+
+        public ActionResult RechercheOeuvre(string id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            List<Oeuvre> model = db.Oeuvre.Where(m => m.Titre_Oeuvre.Contains(id)).ToList();
+            return View(model);
         }
     }
 }

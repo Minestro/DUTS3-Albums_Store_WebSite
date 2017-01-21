@@ -1,5 +1,5 @@
 ﻿@using ProjetWeb.Models
-@model List<KeyValuePair<Oeuvre, string>>
+@model List<Oeuvre>
 
 @{
     ViewBag.Title = "RechercheOeuvre";
@@ -9,17 +9,17 @@
     <thead>
         <tr>
             <th>Titre de l'oeuvre</th>
+            <th>Année</th>
             <th>Type</th>
-            <th>Prix</th>
         </tr>
     </thead>
     <tbody>
-        @foreach (var oeuvrePrixé in Model)
+        @foreach (var oeuvre in Model)
         {
             <tr>
-                <td>@Html.ActionLink(oeuvrePrixé.Key.Titre_Oeuvre, "Details", "Oeuvres", new { id = albumPrixé.Key.Code_Oeuvre }, null)</td>
-                <td>@oeuvrePrixé.</td>
-                <td>@oeuvrePrixé.Value</td>
+                <td>@Html.ActionLink(oeuvre.Titre_Oeuvre, "Details", "Oeuvres", new { id = oeuvre.Code_Oeuvre }, null)</td>
+                <td>@oeuvre.Année</td>
+                <td>@oeuvre.Type_Morceaux.Libellé_Type</td>
             </tr>
         }
     </tbody>

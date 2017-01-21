@@ -25,8 +25,8 @@
             <img class="img-responsive center-block" src="@Url.Action("PochetteAlbum", "Media", new { id=Model.Album.Code_Album})" alt="@Model.Album.Titre_Album">
             <h4 class="pull-right">@Model.Prix</h4>
             <h3>@Model.Album.Titre_Album</h3>
-            <p>Genre : @Model.Album.Genre.Libellé_Abrégé</p>
-            <p>@Model.Description</p>
+            <p><span class="label label-default">Genre</span> @Model.Album.Genre.Libellé_Abrégé</p>
+            <p><span class="label label-default">Description</span>@Model.Description</p>
 
             <div class="panel-group">
                 <div class="panel panel-default">
