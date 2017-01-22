@@ -171,16 +171,7 @@
     <Content Include="Views\Recherche\RechercheAlbum.cshtml" />
     <Content Include="Views\Recherche\Index.cshtml" />
     <Content Include="Views\Recherche\RechercheOeuvre.cshtml" />
-    <None Include="Web.Debug.Config">
-      <DependentUpon>Web.Config</DependentUpon>
-    </None>
-    <None Include="Web.Release.Config">
-      <DependentUpon>Web.Config</DependentUpon>
-    </None>
     <Content Include="Scripts\spoiler.js" />
-    <Content Include="Web.config">
-      <SubType>Designer</SubType>
-    </Content>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\BundleConfig.cs" />
@@ -311,6 +302,7 @@
     <Content Include="Views\Account\Cart.cshtml" />
     <Content Include="Views\Musiciens\Details.cshtml" />
     <Content Include="Views\Oeuvres\Details.cshtml" />
+    <Content Include="Views\Recherche\RechercheCategorie.cshtml" />
     <None Include="Web References\com.amazon.amazonaws\AWSECommerceService.wsdl" />
     <Content Include="Web References\com.amazon.amazonaws\BrowseNodeLookupResponse.datasource">
       <DependentUpon>Reference.map</DependentUpon>

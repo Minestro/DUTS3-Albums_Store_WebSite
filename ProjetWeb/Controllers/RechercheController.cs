@@ -37,6 +37,43 @@ namespace ProjetWeb.Controllers
             return View(model);
         }
 
+        public ActionResult RechercheCategorie()
+        {
+            RechercheCategorieViewModel model = new RechercheCategorieViewModel();
+            model.init(db);
+            return View(model);
+        }
+
+        [HttpPost]
+        public ActionResult RechercheCategorie(RechercheCategorieViewModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                if (model.Code_Genre != null)
+                {
+                    List<KeyValuePair<Album, string>> result = new List<KeyValuePair<Album, string>>();
+                    List<Album> tempList = db.Album.Where(c => c.Code_Genre == model.Code_Genre).ToList();
+                    foreach(var album in tempList)
+                    {
+                        result.Add(new KeyValuePair<Album, string>(album, "NAN"));
+                    }
+                    return View("RechercheAlbum", result);
+                } else if (model.Code_Instrument != null)
+                {
+                    List <Oeuvre> result = db.Instrument.Where(c => c.Code_Instrument == model.Code_Instrument)
+                        .SelectMany(c => db.Instrumentation.Where(d => d.Code_Instrument == c.Code_Instrument))
+                        .SelectMany(c => db.Oeuvre.Where(d => d.Code_Oeuvre == c.Code_Oeuvre)).ToList();
+                    return View("RechercheOeuvre", result);
+                } else
+                {
+                    ModelState.AddModelError("Code_Genre", "Veuillez spécifier au moins une recherche");
+                    model.init(db);
+                    return View(model);
+                }
+            }
+            return View(model);
+        }
+
         public ActionResult RechercheAlbum(string id)
         {
             if (id == null)

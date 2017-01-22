@@ -1,0 +1,24 @@
+﻿@model ProjetWeb.ViewModels.RechercheCategorieViewModel
+@{
+    ViewBag.Title = "Rechercher par catégorie";
+}
+
+<h2>Lancer une recherche par catégorie :</h2>
+@using (Html.BeginForm())
+{
+    <p>Chercher un album par genre :</p>
+    <div>
+        @Html.DropDownListFor(m => m.Code_Genre, Model.Genres, "Sélectionnez un genre")
+        @Html.ValidationMessageFor(m => m.Code_Genre)
+    </div>
+    <p>Chercher une oeuvre par instrument :</p>
+    <div>
+        @Html.DropDownListFor(m => m.Code_Instrument, Model.Instruments, "Sélectionnez un Instrument")
+        @Html.ValidationMessageFor(m => m.Code_Instrument)
+    </div>
+    <p>
+        <button class="btn btn-primary btn-lg" type="submit" value="Rechercher">
+            <span class="glyphicon glyphicon-search"></span> Rechercher
+        </button>
+    </p>
+}

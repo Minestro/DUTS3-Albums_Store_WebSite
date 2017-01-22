@@ -30,8 +30,16 @@
                     <li>
                         @Html.ActionLink("A propos", "APropos", "Home")
                     </li>
-                    <li>
-                        @Html.ActionLink("Rechercher", "Index", "Recherche")
+                    <li class="dropdown">
+                        <a href="#" data-toggle="dropdown" data-submenu="" aria-expanded="false">Rechercher</a>
+                        <ul class="dropdown-menu">
+                            <li>
+                                @Html.ActionLink("Rechercher par mot clé", "Index", "Recherche")
+                            </li>
+                            <li>
+                                @Html.ActionLink("Rechercher par catégorie", "RechercheCategorie", "Recherche")
+                            </li>
+                        </ul>
                     </li>
                 </ul>
                 @Html.Partial("_LoginNavBar")
